@@ -1,18 +1,29 @@
 {
-  "name": "express-locallibrary-tutorial",
-  "version": "0.0.0",
-  "private": true,
+  "name": "schoolingcouncil_developeronrent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www",
-     "devstart":"nodemon ./bin/www"
+    "devstart": "nodemon ./bin/www"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0",
-    "pug": "2.0.0-beta11"
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "debug": "^4.1.0",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.1",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.3.8",
+    "morgan": "^1.9.1",
+    "nodemailer": "^4.6.8",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"
