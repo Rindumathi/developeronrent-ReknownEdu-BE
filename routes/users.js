@@ -177,6 +177,132 @@ router.post('/authenticate', function(req, res) {
     });
 });
 
+//forgot password
+router.put('/forgotpassword', (req, res) => {
+  User.findOne({ email: req.body.email }).select('email active').exec((err, user) => {
+    if (err) throw err; // Throw error if cannot connect
+    if (!user) {
+      res.json({ success: false, message: 'Email was not found' }); // Return error if username is not found in database
+    } //else if (!user.active) {
+    //res.json({ success: false, message: 'Account has not yet been activated' }); // Return error if account is not yet activated
+    // }
+    else {
+      user.resettoken = jwt.sign({ firstname: user.firstname, email: user.email }, config.secret, { expiresIn: '24h' }); // Create a token for activating account through e-mail
+      // Save token to user in database
+      user.save((err) => {
+        if (err) {
+          res.json({ success: false, message: err }); // Return error if cannot connect
+        } else {
+          nodemailer.createTestAccount((err, account) => {
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+              host: 'smtp.gmail.com',
+              port: 587, //587
+              secure: false, // true for 465, false for other ports
+              auth: {
+                user: "schoolingcouncil2018@gmail.com", // eg john@gmail.com
+                pass: "Schoolingcouncil@2018"  // eg password jkfakfdhajfha
+              }
+            });
+            const email = {
+              from: 'Localhost Staff,weddingcollection4@gmail.com',
+              to: user.email,
+              subject: 'Localhost Reset Password Request',
+              text: 'Hello ' + user.email + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br> <a href="http://localhost:4200/resetpassword/' + user.resettoken,
+              html: 'Hello<strong> ' + user.email + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:4200/resetpassword/' + user.resettoken + '">http://localhost:4200/resetpassword/</a>'
+            };
+            transporter.sendMail(email, (error, info) => {
+              if (error) {
+                return console.log(error);
+              }
+              console.log('Message sent: %s', info.messageId);
+              console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+            });
+          });
+          res.json({ success: true, message: 'Please check your e-mail for password reset link' }); // Return success message
+        }
+      });
+    }
+  });
+});
+
+// reset password
+router.get('/resetpassword/:token', (req, res) => {
+
+  User.findOne({ resettoken: req.params.token }).select('email').exec((err, user) => {
+    if (err) throw err; // Throw err if cannot connect
+    var token = req.params.token; // Save user's token from parameters to variable
+    // Function to verify token
+    //      jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      res.json({ success: false, message: 'Password Link Has Expired!!' });  // Token has expired or is invalid
+    } else {
+      if (!user) {
+        res.json({ success: false, message: 'Password Link Has Expired' });  // Token is valid but not no user has that token anymore
+      } else {
+        res.json({ success: true, user: user, message: 'User Has Been Sent' });// Return user object to controller
+      }
+    }
+  });
+  //    });
+});
+
+/* ======================================
+Save user's new password to database
+========================================= */
+router.put('/savepassword/', (req, res) => {
+  User.findOne({ email: req.body.email }).select('email password resettoken').exec((err, user) => {
+    if (err) throw err; // Throw error if cannot connect
+    if (!user) {
+      res.json({ success: false, message: 'User was not found' }); // Return error if user is not found in database
+    }
+    else if (!req.body.password || req.body.password == null || req.body.password == '') {
+      res.json({ success: false, message: 'Password not provided' });
+    } else {
+      user.password = req.body.password; // Save user's new password to the user object
+      //user.cnfpassword = req.body.cnfpassword;
+      user.resettoken = false; // Clear user's resettoken 
+      // Save user's new data
+      user.save((err) => {
+        if (err) {
+          res.json({ success: false, message: err });
+        } else {
+          nodemailer.createTestAccount((err, account) => {
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+              host: 'smtp.gmail.com',
+              port: 587, //587
+              secure: false, // true for 465, false for other ports
+              auth: {
+                user: "schoolingcouncil2018@gmail.com", // eg john@gmail.com
+                pass: "Schoolingcouncil@2018"  // eg password jhsdajlkfhasj
+              }
+            });
+            // Create e-mail object to send to user
+            var email = {
+              from: 'Localhost Staff, staff@localhost.com',
+              to: user.email,
+              subject: 'Localhost Reset Password',
+              text: 'Hello ' + user.email + ', This e-mail is to notify you that your password was recently reset at localhost.com',
+              html: 'Hello<strong> ' + user.email + '</strong>,<br><br>This e-mail is to notify you that your password was recently reset at localhost.com'
+            };
+            transporter.sendMail(email, (error, info) => {
+              if (error) {
+                return console.log(error);
+              }
+              console.log('Message sent: %s', info.messageId);
+              console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+            });
+          });
+          res.json({ success: true, message: 'Password has been reset!' }); // Return success message
+        }
+      });
+    }
+  });
+
+});
+
+//middleware function
 router.use((req, res, next) => {
   const token = req.headers['authorization'];
   if (!token) {
