@@ -1,0 +1,63 @@
+<br>
+<br>
+<br>
+<br>
+<flash-messages></flash-messages>
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+<div class="body">
+  <div class="login-wrap">
+    <div class="login-html">
+      <a routerLink="/login">
+        <input id="tab-1" type="radio" name="tab" class="sign-in">
+      </a>
+      <label for="tab-1" class="tab">Sign In</label>
+      <input id="tab-2" type="radio" name="tab" class="sign-up" checked>
+      <label for="tab-2" class="tab">Sign Up</label>
+      <div class="login-form">
+        <div class="sign-up-htm">
+          <form [formGroup]="form" (submit)="onRegisterSubmit()">
+            <div class="group">
+              <label for="user" class="label">First name</label>
+              <input name="firstname" formControlName="firstname" id="user" type="text" class="input">
+            </div>
+            <div class="group">
+              <label for="user" class="label">Last name</label>
+              <input name="lastname" formControlName="lastname" id="user" type="text" class="input">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Email Address</label>
+              <input name="email" formControlName="email" id="pass" type="text" class="input">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}">
+                <input name="password" formControlName="password" id="pass" type="password" class="input" data-type="password">
+                <!-- Validation -->
+                <ul class="help-block">
+                  <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required</li>
+                  <li *ngIf="form.controls.password.errors?.minlength && form.controls.password.dirty || form.controls.password.errors?.maxlength && form.controls.password.dirty ">Minimum characters: 8, Maximum characters: 35</li>
+                </ul>
+              </div>
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign Up">
+            </div>
+          </form>
+          <div class="hr"></div>
+          <div class="foot-lnk">
+            <label for="tab-1">Already Member?</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
