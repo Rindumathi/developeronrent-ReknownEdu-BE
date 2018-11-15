@@ -1,50 +1,205 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user');
+const Profile = require('../models/profile');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const config = require('../config/database');
+const multer = require('multer');
+const path = require('path');
+
+/** Storage Engine */
+const storageEngine = multer.diskStorage({
+  destination: './uploads',
+  filename: function (req, file, fn) {
+    fn(null, new Date().getTime().toString() + '-' + file.fieldname + path.extname(file.originalname));
+  }
+});
+
+//init
+
+const upload = multer({
+  storage: storageEngine,
+  limits: { fileSize: 200000 },
+  fileFilter: function (req, file, callback) {
+    validateFile(file, callback);
+  }
+}).single('profileimage');
+
+
+var validateFile = function (file, cb) {
+  allowedFileTypes = /jpeg|jpg|png|gif/;
+  const extension = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
+  const mimeType = allowedFileTypes.test(file.mimetype);
+  if (extension && mimeType) {
+    return cb(null, true);
+  } else {
+    cb("Invalid file type. Only JPEG, PNG and GIF file are allowed.")
+  }
+}
 
 /* Get*/
 router.get('/', function (req, res, next) {
   res.send('Express API');
 });
 //get all user
-router.get('/user',function(req,res,next){
-  User.find(function(err,result){
-    if(err)
-    {
-    return (err);}
-    else{
-    res.json(result);}
+router.get('/user', function (req, res, next) {
+  User.find(function (err, result) {
+    if (err) {
+      return (err);
+    }
+    else {
+      res.json(result);
+    }
   });
 });
 
-// update user details
-router.put('/user/:id', (req, res, next) => {
-  User.findByIdAndUpdate({_id: req.params.id}, {
-    $set:{
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email.toLowerCase(),
-        password: req.body.password,
-        mobilenumber:req.body.mobilenumber,
-        country:req.body.country,
-        location:req.body.location,
-        aboutme:req.body.aboutme,
-        creation_dt: Date.now()
+//get profile
+router.get('/profiledet', function (req, res, next) {
+  Profile.find(function (err, prfl) {
+    if (err) {
+      return (err);
     }
-      },
-      function (err, result) {
-          if (err) {
-              res.json(err);
-          }
-          else {
-              res.json(result);
-          }
-
-      });
+    else {
+      res.json(prfl);
+    }
+  });
 });
+//profile info add
+router.post('/profileinfo', function (req, res, next) {
+  upload(req, res, next => {
+      var fullPath = "uploads/" + req.file.filename;
+     
+  let newProfile = new Profile({
+    path: fullPath,
+    caption: req.body.caption,
+    educationinfo: {
+      universityname: req.body.universityname,
+      degree: req.body.degree,
+      coursecompletionyear: req.body.coursecompletionyear,
+      collegename: req.body.collegename,
+      specialization: req.body.specialization,
+      marks: req.body.marks,
+      courselevel: req.body.courselevel
+    },
+    workexp: {
+      companyname: req.body.companyname,
+      designation: req.body.designation,
+      department: req.body.department,
+      workexperience: req.body.workexperience
+    }
+  });
+  newProfile.save((err, Profile) => {
+    if (err) {
+      res.json({ msg: 'Failded to add profiledetails' });
+    } else {
+      res.json({ msg: 'successfully add profile details' });
+    }
+  });
+});
+});
+
+
+// update image  profile  info
+router.put('/profileimage/:id', (req, res, next) => {
+  upload(req, res, next => {
+    var fullPath = "uploads/" + req.file.filename;
+
+  Profile.findByIdAndUpdate({ _id: req.params.id }, {
+    $set: {
+      path: fullPath,
+      caption: req.body.caption
+    }
+  },
+    function (err, result) {
+      if (err) {
+        res.json(err);
+      }
+      else {
+        res.json(result);
+      }
+
+    });
+});
+});
+
+
+// update user details edu  info
+router.put('/education/:id', (req, res, next) => {
+  Profile.findByIdAndUpdate({ _id: req.params.id }, {
+    $set: {
+      educationinfo: {
+        universityname: req.body.universityname,
+        degree: req.body.degree,
+        coursecompletionyear: req.body.coursecompletionyear,
+        collegename: req.body.collegename,
+        specialization: req.body.specialization,
+        marks: req.body.marks,
+        courselevel: req.body.courselevel
+      }
+    }
+  },
+    function (err, result) {
+      if (err) {
+        res.json(err);
+      }
+      else {
+        res.json(result);
+      }
+
+    });
+});
+
+// update user details work info
+router.put('/work/:id', (req, res, next) => {
+  Profile.findByIdAndUpdate({ _id: req.params.id }, {
+    $set: {
+      workexp: {
+        companyname: req.body.companyname,
+        designation: req.body.designation,
+        department: req.body.department,
+        workexperience: req.body.workexperience
+      }
+    }
+  },
+    function (err, result) {
+      if (err) {
+        res.json(err);
+      }
+      else {
+        res.json(result);
+      }
+
+    });
+});
+
+// update user details personal info
+router.put('/user/:id', (req, res, next) => {
+  User.findByIdAndUpdate({ _id: req.params.id }, {
+    $set: {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email.toLowerCase(),
+      password: req.body.password,
+      mobilenumber: req.body.mobilenumber,
+      country: req.body.country,
+      location: req.body.location,
+      aboutme: req.body.aboutme,
+      creation_dt: Date.now()
+    }
+  },
+    function (err, result) {
+      if (err) {
+        res.json(err);
+      }
+      else {
+        res.json(result);
+      }
+
+    });
+});
+
+
 
 // Register
 router.post('/register', (req, res, next) => {
@@ -66,10 +221,10 @@ router.post('/register', (req, res, next) => {
             lastname: req.body.lastname,
             email: req.body.email.toLowerCase(),
             password: req.body.password,
-            mobilenumber:req.body.mobilenumber,
-            country:req.body.country,
-            location:req.body.location,
-            aboutme:req.body.aboutme,
+            mobilenumber: req.body.mobilenumber,
+            country: req.body.country,
+            location: req.body.location,
+            aboutme: req.body.aboutme,
             temporarytoken: jwt.sign({ email: 'user.email' }, config.secret, { expiresIn: '24h' }),
             creation_dt: Date.now()
           });
@@ -391,6 +546,51 @@ router.put('/savepassword/', (req, res) => {
     }
   });
 
+});
+//contactus
+router.put('/contact', (req, res, next) => {
+  if (!req.body.email) {
+    res.json({ success: false, message: 'You must provide an email' });
+  }
+  else {
+    if (!req.body.contactname) {
+      res.json({ success: false, message: 'You must provide a name' });
+    } else {
+      if (!req.body.contactmessage) {
+        res.json({ success: false, message: 'You must provide a message' });
+      }
+      else {
+        // Create e-mail object to send to client
+        nodemailer.createTestAccount((err, account) => {
+          // create reusable transporter object using the default SMTP transport
+          let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587, //587
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: "schoolingcouncil2018@gmail.com", // your own gmail eg abc@gmail.com
+              pass: "Schoolingcouncil@2018"  // Enter secret gmail password not gmail login password
+            }
+          });
+          const email = {
+            from: 'Localhost Staff, staff@localhost.com',
+            to: 'induece94@gmail.com',
+            subject: 'Contact Form Submission',
+            text: 'You have a submission with the following details... Name: ' + req.body.contactname + 'Email: ' + req.body.email + 'Message: ' + req.body.contactmessage,
+            html: '<p>You have a submission with the following details...</p><ul><li>Name: ' + req.body.contactname + '</li><li>Email: ' + req.body.email.toLowerCase() + '</li><li>Message: ' + req.body.contactmessage + '</li></ul>'
+          };
+          transporter.sendMail(email, (error, info) => {
+            if (error) {
+              return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+          });
+        });
+        res.json({ success: true, message: 'we sent your information to our client' }); // Return success
+      }
+    }
+  }
 });
 
 //middleware function
