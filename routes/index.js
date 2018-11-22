@@ -93,39 +93,59 @@ router.post('/questions',(req,res,next)=>{
 })
 
 
-//qus
+//qus(working)
 router.post('/finduni', (req, res, next) => {
     var MongoClient = require('mongodb').MongoClient;
     var url = "mongodb://localhost:27017/";
     MongoClient.connect(url, function (err, db) {
         if (err) throw err;
         var dbo = db.db("qa");
-        if (!req.body.pg_wrkexp) {
-            res.json({ success: false, message: 'Workexperience is missing' });
-        } else {
-            if (!req.body.pg_internship) {
-                res.json({ success: false, message: 'Internships is missing' });
-            } else {
+        if (!req.body.pg_10th || !req.body.pg_12th || !req.body.pg_gpa || !req.body.pg_Backlogs || !req.body.pg_gre || !req.body.pg_gmat || !req.body.pg_sat || !req.body.pg_toefl || !req.body.pg_ielts || !req.body.pg_pte || !req.body.pg_wrkexp || !req.body.pg_internship || !req.body.pg_projects || !req.body.pg_workshops || !req.body.pg_extraskills || !req.body.pg_sports || !req.body.pg_conference || !req.body.pg_paperpresentation || !req.body.pg_patents || !req.body.pg_seminars || !req.body.pg_recommendation || !req.body.pg_universityreputation) 
+        {
+            res.json({ success: false, message: 'please fill all requirements' });
+        }else {
                 var query = new questions({
-                    pg_wrkexp: req.body.pg_wrkexp,
-                    pg_internship: req.body.pg_internship
+                    masters:{
+                        pg_10th: req.body.pg_10th,
+                        pg_12th: req.body.pg_12th,
+                        pg_gpa: req.body.pg_gpa,
+                        pg_Backlogs: req.body.pg_Backlogs,
+                        pg_gre: req.body.pg_gre,
+                        pg_gmat: req.body.pg_gmat,
+                        pg_sat: req.body.pg_sat,
+                        pg_toefl: req.body.pg_toefl,
+                        pg_ielts: req.body.pg_ielts,
+                        pg_pte: req.body.pg_pte,
+                        pg_wrkexp: req.body.pg_wrkexp,
+                        pg_internship: req.body.pg_internship,
+                        pg_projects: req.body.pg_projects,
+                        pg_workshops: req.body.pg_workshops,
+                        pg_extraskills: req.body.pg_extraskills,
+                        pg_sports: req.body.pg_sports,
+                        pg_conference: req.body.pg_conference,
+                        pg_paperpresentation: req.body.pg_paperpresentation,
+                        pg_patents: req.body.pg_patents,
+                        pg_seminars: req.body.pg_seminars,
+                        pg_recommendation: req.body.pg_recommendation,
+                        pg_universityreputation: req.body.pg_universityreputation
+                    }
                 });
                 query.save((obj) => {
-                    if (req.body.pg_wrkexp == "6 years" && req.body.pg_internship == "5 certificates") {
-                        //var query = { pg_wrkexp: req.body.pg_wrkexp, pg_internship: req.body.pg_internship };
+                   if (req.body.pg_wrkexp == "6 years" && req.body.pg_internship == "5 certificates" && req.body.pg_projects == 6 && req.body.pg_recommendation =="Exemplary" && req.body.pg_universityreputation == "Exemplary" && (req.body.pg_workshops == 3 || req.body.pg_workshops == 4) && req.body.pg_extraskills >= 15 && req.body.pg_sports >= 5 && req.body.pg_conference >= 5 && req.body.pg_paperpresentation >= 5 && req.body.pg_patents >= 5 && req.body.pg_seminars >= 5 && (req.body.pg_gre >=330 && req.body.pg_gre <=340) && (req.body.pg_gmat >=740 && req.body.pg_gmat <=800) && (req.body.pg_sat >=1500 && req.body.pg_sat <=1600)&& (req.body.pg_toefl >=115 && req.body.pg_toefl <=120) && (req.body.pg_ielts >=8 && req.body.pg_ielts <=9) && (req.body.pg_pte >=80 && req.body.pg_pte <=90) && ((req.body.pg_gpa >=9.5 && req.body.pg_gpa <=10) || (req.body.pg_gpa >=95 && req.body.pg_gpa <=100)) && ((req.body.pg_10th >=9.5 && req.body.pg_10th <=10) || (req.body.pg_10th >=95 && req.body.pg_10th <=100)) && ((req.body.pg_12th >=9.5 && req.body.pg_12th <=10) || (req.body.pg_12th >=95 && req.body.pg_12th <=100))) {
                         dbo.collection("universitydatas").find(obj).toArray(function (err, result) {
                             if (err) throw err;
-                            console.log(result);
-                            res.json(result);
+                            //console.log(result);
+                            res.json({msg:"You are eligible to Titanium Universities",result});
+                           // res.json(result);
                             db.close();
                         });
                     } else {
-                      res.json({msg:"university not found"});
+                     res.json({msg:"university not found"});
                     }
                 });
             }
 
-        }
+        
     });
 });
 
