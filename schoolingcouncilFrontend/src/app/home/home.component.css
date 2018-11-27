@@ -1,0 +1,11 @@
+.home{
+    padding-top: 200px;
+    height: 600px;
+    background-image: url("/assets/template/images/home_slider_1.jpg");
+    background-size: cover;
+}
+@media only screen and (max-width: 600px) {
+    .home {
+        padding-top: 0px;
+    }
+}

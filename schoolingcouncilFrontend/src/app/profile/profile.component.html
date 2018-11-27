@@ -1,0 +1,368 @@
+<br>
+<br>
+<br>
+<div class="backgroundimg">
+  <!--upload img-->
+  <div class="container">
+    <div class="avatar-upload">
+      <div class="avatar-edit">
+        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+        <label for="imageUpload"></label>
+      </div>
+      <div class="avatar-preview">
+        <div id="imagePreview" style="background-image: url(/assets/template/images/imgup.png);">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- image upload-->
+  <h1 style="color:white;" *ngIf="user">{{user.firstname}} {{user.lastname}}</h1>
+</div>
+<main class="main">
+  <div class="c">
+    <button type="button" class="btn btn-primary btn-md" (click)="onLogoutClick()">Logout</button>
+  </div>
+  <input id="tab1" class="input" type="radio" name="tabs" checked>
+  <label style="padding: 15px 25px;" for="tab1">Profile</label>
+
+  <input id="tab2" class="input" type="radio" name="tabs">
+  <label style="padding: 15px 25px;" for="tab2">Activity</label>
+
+  <input id="tab3" class="input" type="radio" name="tabs">
+  <label style="padding: 15px 25px;" for="tab3">MockTest Results</label>
+  <section id="content1">
+    <!--personal info panel-->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="font-size:20px;">Personal Information
+          <div class="c" data-toggle="modal" data-target="#myModal" style="font-size:17px;">Edit</div>
+          <!--popup-->
+          <div class="modal fade" id="myModal" role="dialog" style="padding-top: 200px;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <h4 style=" border-bottom: 1px solid #e6e6e6;font-size:20px;">Personal Information</h4>
+                  <br>
+                  <form (submit)="onPersonalinfo(user._id)">
+                    <div class="form-group row">
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">First Name</p>
+                        <input class="form-control" id="ex2" [(ngModel)]="user.firstname" name="firstname" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Last Name</p>
+                        <input class="form-control" id="ex2" [(ngModel)]="user.lastname" name="lastname" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Email</p>
+                        <input class="form-control" id="ex2" [(ngModel)]="user.email" name="email" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;"> Mobile Number</p>
+                        <input class="form-control" id="ex2" [(ngModel)]="user.mobilenumber" name="mobilenumber" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Country</p>
+                        <input class="form-control" id="ex2" [(ngModel)]="user.country" name="country" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Location</p>
+                        <input class="form-control" id="ex2" [(ngModel)]="user.location" name="location" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">About Me</p>
+                        <textarea class="form-control" id="ex2" [(ngModel)]="user.aboutme" name="aboutme" type="text"></textarea>
+                      </div>
+                    </div>
+                    <div class="c">
+                      <button type="button" class="btn btn-primary btn-md">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--popup-->
+        </h3>
+        <div *ngIf="user">
+          <hr class="style14">
+          <i style="font-size:18px;" class="fa fa-user" aria-hidden="true"> {{user.firstname}} {{user.lastname}}</i>
+          <br>
+          <br>
+          <i style="font-size:18px;" class="fa fa-envelope" aria-hidden="true"> {{user.email}}</i>
+          <br>
+          <br>
+          <i style="font-size:18px;" class="fa fa-phone" aria-hidden="true"> {{user.mobilenumber}}</i>
+          <br>
+          <br>
+          <i style="font-size:18px;" class="fa fa-map-marker" aria-hidden="true"> {{user.location}} {{user.country}}</i>
+          <br>
+          <br>
+          <i style="font-size:18px;" class="fa fa-user" aria-hidden="true"> {{user.aboutme}}</i>
+        </div>
+      </div>
+    </div>
+    <!--personal info panel-->
+    <!--education panel-->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="font-size:20px;">Education Background
+          <div class="c" data-toggle="modal" data-target="#myModal1" style="font-size:17px;">Edit</div>
+          <!--popup-->
+          <div class="modal fade" id="myModal1" role="dialog" style="padding-top: 200px;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <h4 style=" border-bottom: 1px solid #e6e6e6;font-size:20px;">Education Background</h4>
+                  <br>
+                  <form>
+                    <div class="form-group row">
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">University Name</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Degree/Diploma Name</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Course Completion Year</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">College Name</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Specialization</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Marks %</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Course Level</p>
+                        <select class="form-control">
+                          <option>select</option>
+                          <option>X</option>
+                          <option>XII</option>
+                          <option>UG</option>
+                          <option>PG</option>
+                          <option>PhD</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="c">
+                      <button type="button" class="btn btn-primary btn-md">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </h3>
+        <!--popup-->
+        <hr class="style14">
+        <br>
+        <i style="font-size:18px;" class="fa fa-graduation-cap"> Under Graduate</i>
+        <br>
+        <br>
+        <table>
+          <tr>
+            <td>
+              <b>College Name</b>
+            </td>
+            <td></td>
+            <td>:</td>
+            <td>Kongu College</td>
+          </tr>
+          <tr>
+            <td>
+              <b>University</b>
+            </td>
+            <td></td>
+            <td>:</td>
+            <td>Anna University,2016</td>
+          </tr>
+          <tr>
+            <td>
+              <b>Marks Obtained</b>
+            </td>
+            <td></td>
+            <td>:</td>
+            <td>60%</td>
+          </tr>
+        </table>
+        <hr class="style14">
+        <br>
+        <span style="color:#428bca;text-decoration:none;" data-toggle="collapse" data-target="#demo">Add Education Background</span>
+        <!--Add edu collapse-->
+        <div id="demo" class="collapse">
+          <h4 style=" border-bottom: 1px solid #e6e6e6;font-size:20px;">Education Background
+            <div class="c">
+              <a href="#" style="text-decoration:none;font-size:14px;">Cancel</a>
+            </div>
+          </h4>
+          <br>
+          <form>
+            <div class="form-group row">
+              <div class="col-xs-6">
+                <p style="font-size:15px;">University Name</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Degree/Diploma Name</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Course Completion Year</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">College Name</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Specialization</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Marks %</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Course Level</p>
+                <select class="form-control">
+                  <option>select</option>
+                  <option>X</option>
+                  <option>XII</option>
+                  <option>UG</option>
+                  <option>PG</option>
+                  <option>PhD</option>
+                </select>
+              </div>
+            </div>
+            <div class="c">
+              <button type="button" class="btn btn-primary btn-md">Save</button>
+            </div>
+          </form>
+        </div>
+        <!--Add edu collapse-->
+      </div>
+    </div>
+    <!--Education panel-->
+    <!--Work panel-->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 style="font-size:20px;">Work Experience
+          <div class="c" data-toggle="modal" data-target="#myModal2" style="font-size:17px;">Edit</div>
+          <!--popup-->
+          <div class="modal fade" id="myModal2" role="dialog" style="padding-top: 200px;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <h4 style=" border-bottom: 1px solid #e6e6e6;font-size:20px;">Work Experience</h4>
+                  <br>
+                  <form>
+                    <div class="form-group row">
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Company Name</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Designation</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Function/Department</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <p style="font-size:15px;">Total Work Experience</p>
+                        <input class="form-control" id="ex2" type="text">
+                      </div>
+                    </div>
+                    <div class="c">
+                      <button type="button" class="btn btn-primary btn-md">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </h3>
+        <!--popup-->
+        <hr class="style14">
+        <br>
+        <i style="font-size:18px;" class="fa fa-briefcase"> Designation(Department)</i>
+        <br>
+        <br>
+        <table>
+          <tr>
+            <td>
+              <b>Company Name</b>
+            </td>
+            <td></td>
+            <td>:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <b>Total Experience</b>
+            </td>
+            <td></td>
+            <td>:</td>
+            <td></td>
+          </tr>
+        </table>
+        <hr class="style14">
+        <br>
+        <span style="color:#428bca;text-decoration:none;" data-toggle="collapse" data-target="#work">Add Work Experience</span>
+        <div id="work" class="collapse">
+          <h4 style=" border-bottom: 1px solid #e6e6e6;font-size:20px;">Work Experience
+            <div class="c">
+              <a href="#" style="text-decoration:none;font-size:14px;">Cancel</a>
+            </div>
+          </h4>
+          <br>
+          <form>
+            <div class="form-group row">
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Company Name</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Designation</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Function/Department</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+              <div class="col-xs-6">
+                <p style="font-size:15px;">Total Work Experience</p>
+                <input class="form-control" id="ex2" type="text">
+              </div>
+            </div>
+            <div class="c">
+              <button type="button" class="btn btn-primary btn-md">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--Work panel-->
+  </section>
+
+  <section id="content2">
+    <h4 style=" border-bottom: 1px solid #e6e6e6;font-size:20px;">ACTIVITY STATS</h4>
+    <br>
+  </section>
+
+  <section id="content3">
+    <h4 style=" border-bottom: 1px solid #e6e6e6;font-size:20px;">Eligibility Test Scores</h4>
+    <br>
+  </section>
+
+</main>
