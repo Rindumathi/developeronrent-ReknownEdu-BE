@@ -147,6 +147,7 @@ router.put('/updateQus/:id', (req, res) => {
                                 } else {
                                     forum.title = req.body.title; // Save latest  title
                                     forum.body = req.body.body; // Save latest body
+                                    forum.createdBy =user.email;
                                     forum.creation_dt = Date.now();
                                     forum.save((err) => {
                                         if (err) {
@@ -294,6 +295,7 @@ router.put('/answers/:answersId', (req, res, next) => {
                     Forum.update({ 'answers._id': req.params.answersId }, {
                         $set: {
                             'answers.$.content': req.body.content,
+                            'answers.$.answercreatedBy': user.email,
                         },
                     },
                         function (err, result) {
