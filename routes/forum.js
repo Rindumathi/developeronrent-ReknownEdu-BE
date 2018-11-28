@@ -249,13 +249,13 @@ router.put('/answer/:id', (req, res, next) => {
                             } else {
                                 // answer in array
                                 // Add the new answer to the question post's 
-                                // forum.answers = [{content:req.body.content}], // content field
+                                // content field
                                 if (Array.isArray(forum.answers)) {
                                     forum.answers.push({ content: req.body.content, answercreatedBy: user.email, creation_dt: Date.now() });
                                 } else {
                                     forum.answers = [{ content: req.body.content, answercreatedBy: user.email, creation_dt: Date.now() }];
                                 }
-
+                                forum.totalanswers = forum.answers.length;
                                 // Save answer post
                                 forum.save((err) => {
                                     // Check if error was found
@@ -340,7 +340,7 @@ router.delete("/:id/delanswers/:answerId", function (req, res) {
                             res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
                         } else {
                             if (user.email !== ansresult.answercreatedBy) {
-                                console.log(ansresult.answercreatedBy);
+                                //console.log(ansresult.answercreatedBy);
                                 res.json({ success: false, message: 'you cannot delete others Answer post' });
                             } else {
                                 Forum.findOneAndUpdate({ _id: req.params.id }, {
@@ -417,18 +417,139 @@ router.put('/quscomment/:id', (req, res) => {
         });
     }
 });
-
-
-//add comments for answer(not working)
-router.post('/comments', (req, res, next) => {
-    if (!req.body.content) {
-        res.json({ success: false, message: 'content is missing' }); // Return error message
+//update qus comment only for commentator
+router.put('/updateQuscomments/:commentId', (req, res) => {
+    if (!req.body.comment) {
+        res.json({ success: false, message: 'comment is missing' }); // Return error message
     } else {
-        Forum.update({ 'answers._id': req.body.answersId }, (err, forum) => {
+        // Check if id exists in database
+        Forum.findOne({ 'qus_comments._id': req.params.commentId }, (err, forum) => {
+            //res.json(forum);
+            var x = req.params.commentId;
+            //var y = forum.answers[0].ans_comments.length;
+            for (i = 0; i < forum.qus_comments.length; i++) {
+
+                if (forum.qus_comments[i]._id == x) {
+                    // res.json(forum.answers[i].ans_comments[j]);
+                    var commentresultup = forum.qus_comments[i];
+                    //console.log(commentresultup);
+                }
+
+            }
+            if (err) {
+                res.json({ success: false, message: 'Not a valid comment id' }); // Return error message
+            } else {
+                // Check if id was found in the database
+                if (!commentresultup) {
+                    res.json({ success: false, message: 'Comment id was not found.' }); // Return error message
+                } else {
+                    // Check who user is that is requesting Qus update
+                    User.findOne({ _id: req.decoded.userId }, (err, user) => {
+                        // Check if error was found
+                        if (err) {
+                            res.json({ success: false, message: err }); // Return error message
+                        } else {
+                            if (!user) {
+                                res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
+                            } else {
+                                if (user.email !== commentresultup.commentator) {
+                                    //console.log(ansresult.answercreatedBy);
+                                    res.json({ success: false, message: 'you cannot update others comment post' });
+                                } else {
+                                    commentresultup.comment = req.body.comment;// save latest comment in answer
+                                    forum.save((err) => {
+                                        if (err) {
+                                            res.json({ success: true, message: 'Something went wrong' }); // Return error message
+                                        } else {
+                                            res.json({ success: true, message: 'Your Comment Updated!' }); // Return success message
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+});
+//delete qus comments only for commentator
+router.delete("/:id/delQuscomments/:commentId", function (req, res) {
+    Forum.findOne({ 'qus_comments._id': req.params.commentId }, (err, forum) => {
+        //res.json(forum);
+        var x = req.params.commentId;
+        //var y = forum.answers[0].ans_comments.length;
+        for (i = 0; i < forum.qus_comments.length; i++) {
+
+            if (forum.qus_comments[i]._id == x) {
+                // res.json(forum.answers[i].ans_comments[j]);
+                var commentresultup = forum.qus_comments[i];
+                //console.log(commentresultup);
+            }
+
+        }
+        if (err) {
+            res.json({ success: false, message: 'Invalid id' }); // Return error message
+        } else {
+            if (!commentresultup) {
+                res.json({ success: false, messasge: 'Comment was not found' }); // Return error message
+            } else {
+                // Get info on user who is attempting to delete post
+                User.findOne({ _id: req.decoded.userId }, (err, user) => {
+                    if (err) {
+                        res.json({ success: false, message: err }); // Return error message
+                    } else {
+                        // Check if user's id was found in database
+                        if (!user) {
+                            res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
+                        } else {
+                            if (user.email !== commentresultup.commentator) {
+                                //console.log(ansresult.answercreatedBy);
+                                res.json({ success: false, message: 'you cannot delete others comment' });
+                            } else {
+                                Forum.findOneAndUpdate({ _id: req.params.id }, {
+                                    $pull: { "qus_comments": { "_id": req.params.commentId } }
+                                }, { safe: true },
+                                    function (err, result) {
+                                        if (err) {
+                                            // console.log(err);
+                                            res.json({ success: false, message: err }); // Return error message   
+                                        }
+                                        else {
+                                            //console.log(answerId);
+                                            res.json({ success: true, message: 'Your Comment deleted!' }); // Return success message
+                                        }
+                                    });
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+
+
+});
+
+
+//add comments for answer
+router.put('/comments/:answerId', (req, res, next) => {
+    if (!req.body.comment) {
+        res.json({ success: false, message: 'comment is missing' }); // Return error message
+    } else {
+        Forum.findOne({ 'answers._id': req.params.answerId }, (err, forum) => {
+            var x = req.params.answerId;
+            for (i = 0; i < forum.answers.length; i++) {
+                if (forum.answers[i]._id == x) {
+                    //console.log(forum.answers[i]);
+                    var commentresult = forum.answers[i];
+                }
+            }
             if (err) {
                 res.json({ success: false, message: 'Invalid Answer id' }); // Return error message
             } else {
-                if (!forum) {
+                if (!commentresult) {
                     res.json({ success: false, message: 'Answer not found.' }); // Return error message
                 } else {
                     User.findOne({ _id: req.decoded.userId }, (err, user) => {
@@ -440,25 +561,76 @@ router.post('/comments', (req, res, next) => {
                             if (!user) {
                                 res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
                             } else {
-                                // answer in array
-                                // Add the new answer to the question post's 
-                                // forum.answers = [{content:req.body.content}], // content field
-                                if (Array.isArray(forum.answers)) {
-                                    forum.answers.push({ content: req.body.content, createdBy: user.email, creation_dt: Date.now() });
+                                if (Array.isArray(commentresult.ans_comments)) {
+                                    commentresult.ans_comments.push({ comment: req.body.comment, commentator: user.email });
                                 } else {
-                                    forum.answers = [{ content: req.body.content, createdBy: user.email, creation_dt: Date.now() }];
+                                    commentresult.ans_comments = [{ comment: req.body.comment, commentator: user.email }];
                                 }
-
-                                // Save answer post
                                 forum.save((err) => {
-                                    // Check if error was found
                                     if (err) {
                                         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
                                     } else {
                                         res.json({ success: true, message: 'comment saved' }); // Return success message
                                     }
                                 });
+                            }
+                        }
+                    });
+                }
+            }
 
+        });
+    }
+
+});
+
+//update Answer comments
+router.put('/updatecomments/:commentId', (req, res) => {
+    if (!req.body.comment) {
+        res.json({ success: false, message: 'comment is missing' }); // Return error message
+    } else {
+        // Check if id exists in database
+        Forum.findOne({ 'answers.ans_comments._id': req.params.commentId }, (err, forum) => {
+            //res.json(forum);
+            var x = req.params.commentId;
+            //var y = forum.answers[0].ans_comments.length;
+            for (i = 0; i < forum.answers.length; i++) {
+                for (j = 0; j < forum.answers[i].ans_comments.length; j++) {
+                    if (forum.answers[i].ans_comments[j]._id == x) {
+                        // res.json(forum.answers[i].ans_comments[j]);
+                        var commentresultup = forum.answers[i].ans_comments[j];
+                    }
+                }
+            }
+            if (err) {
+                res.json({ success: false, message: 'Not a valid comment id' }); // Return error message
+            } else {
+                // Check if id was found in the database
+                if (!commentresultup) {
+                    res.json({ success: false, message: 'Comment id was not found.' }); // Return error message
+                } else {
+                    // Check who user is that is requesting Qus update
+                    User.findOne({ _id: req.decoded.userId }, (err, user) => {
+                        // Check if error was found
+                        if (err) {
+                            res.json({ success: false, message: err }); // Return error message
+                        } else {
+                            if (!user) {
+                                res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
+                            } else {
+                                if (user.email !== commentresultup.commentator) {
+                                    //console.log(ansresult.answercreatedBy);
+                                    res.json({ success: false, message: 'you cannot update others comment post' });
+                                } else {
+                                    commentresultup.comment = req.body.comment;// save latest comment in answer
+                                    forum.save((err) => {
+                                        if (err) {
+                                            res.json({ success: true, message: 'Something went wrong' }); // Return error message
+                                        } else {
+                                            res.json({ success: true, message: 'Your Comment Updated!' }); // Return success message
+                                        }
+                                    });
+                                }
                             }
                         }
                     });
@@ -466,7 +638,60 @@ router.post('/comments', (req, res, next) => {
             }
         });
     }
-
+});
+// delete Answer Comments only for commentator
+router.delete('/deletecomments/:commentId', (req, res) => {
+    Forum.findOne({ 'answers.ans_comments._id': req.params.commentId }, (err, forum) => {
+        var x = req.params.commentId;
+        //var y = forum.answers[0].ans_comments.length;
+        for (i = 0; i < forum.answers.length; i++) {
+            for (j = 0; j < forum.answers[i].ans_comments.length; j++) {
+                if (forum.answers[i].ans_comments[j]._id == x) {
+                    // res.json(forum.answers[i].ans_comments[j]);
+                    var commentresultdel = forum.answers[i].ans_comments[j];
+                    // console.log(commentresultdel);
+                    //res.json(commentresultdel);
+                }
+            }
+        }
+        if (err) {
+            res.json({ success: false, message: 'Invalid id' }); // Return error message
+        } else {
+            if (!commentresultdel) {
+                res.json({ success: false, messasge: 'Comment was not found' }); // Return error message
+            } else {
+                User.findOne({ _id: req.decoded.userId }, (err, user) => {
+                    if (err) {
+                        res.json({ success: false, message: err }); // Return error message
+                    } else {
+                        if (!user) {
+                            res.json({ success: false, message: 'Unable to authenticate user.' }); // Return error message
+                        } else {
+                            if (user.email !== commentresultdel.commentator) {
+                                console.log(commentresultdel.commentator);
+                                res.json({ success: false, message: 'you cannot del others comment' });
+                            } else {
+                                // commentresultdel.remove();
+                                commentresultdel.remove((err, resultcmnt) => {
+                                    if (err) {
+                                        res.json({ msg: "comment is not removed" });
+                                    } else {
+                                        forum.save((err) => {
+                                            if (err) {
+                                                res.json({ success: false, message: 'Something went wrong' }); // Return success message
+                                            } else {
+                                                res.json({ success: true, message: 'Your Comment deleted!' }); // Return success message
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    });
 });
 
 //likes for question
@@ -805,6 +1030,24 @@ router.put('/dislikeans/:answerId', (req, res) => {
             }
         }
     });
+
+});
+
+router.delete("/ans/:id/:answerId/answerscomments/:commentId", function (req, res) {
+
+    Forum.findOneAndUpdate({ _id: req.params.id }, {
+        $pull: { "answers.1.ans_comments": { "_id": req.params.commentId } }
+    }, { safe: true, multi: true },
+        function (err, result) {
+            if (err) {
+                console.log(err);
+                res.json({ msg: "somethong went wrong" })
+            }
+            else {
+                res.json({ msg: "success" });
+                // res.redirect("/qus/" + foundAnimal._id + "/answers");
+            }
+        });
 
 });
 

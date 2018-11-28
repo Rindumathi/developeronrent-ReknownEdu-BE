@@ -102,6 +102,7 @@ const  ForumSchema = mongoose.Schema({
       comment: { type: String, validate: commentValidators },
       commentator: { type: String },
     }],
+    totalanswers: {type: Number },
     answers: [{
         content:{ type:String },
         answercreatedBy: { type: String, require:true },
@@ -109,7 +110,11 @@ const  ForumSchema = mongoose.Schema({
         likesAnswer: {type: Number, default: 0},
         likedAnswerBy: {type: Array},
         dislikesAnswer: {type: Number, default:0},
-        dislikedAnswerBy: {type: Array}
+        dislikedAnswerBy: {type: Array},
+        ans_comments:[{ 
+          comment: { type: String, validate: commentValidators },
+          commentator: { type: String },
+        }],
       }],
 });
 
