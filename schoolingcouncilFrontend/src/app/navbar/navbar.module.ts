@@ -5,10 +5,10 @@ import { NavbarRoutingModule } from './navbar-routing.module';
 import { NavbarComponent } from './navbar.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
   imports: [
     CommonModule,
     NavbarRoutingModule
-  ]
+  ],
+  declarations: [NavbarComponent]
 })
 export class NavbarModule { }
