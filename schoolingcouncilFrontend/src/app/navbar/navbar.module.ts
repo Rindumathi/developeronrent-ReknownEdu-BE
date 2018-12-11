@@ -9,6 +9,6 @@ import { NavbarComponent } from './navbar.component';
     CommonModule,
     NavbarRoutingModule
   ],
-  declarations: [NavbarComponent]
+  declarations: []
 })
 export class NavbarModule { }

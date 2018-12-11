@@ -9,6 +9,6 @@ import { FooterComponent } from './footer.component';
     CommonModule,
     FooterRoutingModule
   ],
-  declarations: [FooterComponent]
+  declarations: []
 })
 export class FooterModule { }

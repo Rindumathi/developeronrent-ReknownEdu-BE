@@ -22,3 +22,13 @@
 .btn{
   margin-top:10px;
 }
+@media(min-width:350px) and (max-width:375px){
+  nav>.navbar-toggler{
+    padding: 5px;
+}
+}
+
+.navbar-toggler
+{
+  padding:.25rem .75rem
+}

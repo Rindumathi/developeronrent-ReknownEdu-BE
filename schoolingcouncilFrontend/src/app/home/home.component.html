@@ -1,68 +1,70 @@
 <div class="page-wrapper bg-img-1 p-t-200 p-b-120">
-        <app-navbar></app-navbar>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                        <div class="wrapper wrapper--w900" style="padding-top: 20px; ">
-                                <br><br><br>
-                                        <h3>Find Your
-                                  <br>Dream University here</h3>
-                                <div class="simple card-4" style="width: 550px;">
-                                  <div class="card-body" style="padding-left: 0px;padding-right: 0px;">
-                                    <ul class="tab-list">
-                                      <li class="tab-list__item active">
-                                        <a class="tab-list__link" href="#tab1" data-toggle="tab">Program</a>
-                                      </li>
-                                      <li class="tab-list__item">
-                                        <a class="tab-list__link" href="#tab2" data-toggle="tab">University</a>
-                                      </li>
-                                      <li class="tab-list__item">
-                                        <a class="tab-list__link" href="#tab3" data-toggle="tab">Country</a>
-                                      </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                      <div class="tab-pane active" id="tab1" style="width: 450px;padding-right: 60px;">
-                                        <form method="POST" action="#">
-                                          <div class="input-group input-group-big">
-                        
+    <app-navbar></app-navbar>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="wrapper wrapper--w900">
+                    <br>
+                    <br>
+                    <br>
+                    <h3>Find Your
+                        <br>Dream University here</h3>
+                    <div class="simple card-4">
+                        <div class="card-body">
+                            <ul class="tab-list">
+                                <li class="tab-list__item active">
+                                    <a class="tab-list__link" href="#tab1" data-toggle="tab" style="padding-left: 0px;">Program</a>
+                                </li>
+                                <li class="tab-list__item">
+                                    <a class="tab-list__link" href="#tab2" data-toggle="tab" >University</a>
+                                </li>
+                                <li class="tab-list__item">
+                                    <a class="tab-list__link" href="#tab3" data-toggle="tab" >Country</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane ta active" id="tab1" style="padding-right: 70px;padding-left: 0px;">
+                                    <form method="POST" action="#">
+                                        <div class="input-group input-group-big" style="padding-left:0px;">
                                             <input class="input--style-1" type="text" name="address" placeholder="Enter your program here" required="required">
-                                            <i class="zmdi zmdi-search input-group-symbol"></i>
-                                          </div>
-                                        </form>
-                                      </div>
-                                      <div class="tab-pane" id="tab2" style="width: 450px;padding-right: 60px;">
-                                        <form method="POST" action="#">
-                                          <div class="input-group input-group-big">
-                                            <!-- <label class="label">location:</label>-->
-                                            <input class="input--style-1" type="text" name="location" placeholder="Enter your university here" required="required">
-                                            <i class="zmdi zmdi-search input-group-symbol"></i>
-                        
-                                          </div>
-                                        </form>
-                                      </div>
-                                      <div class="tab-pane" id="tab3" style="width: 450px;padding-right: 60px;">
-                                        <form method="POST" action="#">
-                                          <div class="input-group input-group-big">
-                                            <input class="input--style-1" type="text" name="origin" placeholder="Enter your country here" required="required">
-                                            <i class="zmdi zmdi-search input-group-symbol"></i>
-                                          </div>
-                                        </form>
-                                      </div>
-                                    </div>
-                                  </div>
+                                            <i class="fa fa-search"></i>
+                                        </div>
+                                    </form>
                                 </div>
-                              </div>
-                </div>
-                <div class="col-md-6">
-                        <div class="banner">
-                          <img src="/assets/template/banner.svg" alt="" style=" height: 680px;margin-left: -130px;">
+                                <div class="tab-pane" id="tab2" style="width: 410px;padding-right: 70px;padding-left: 0px;">
+                                    <form method="POST" action="#">
+                                        <div class="input-group input-group-big">
+
+                                            <input class="input--style-1" type="text" name="address" placeholder="Enter your university here" required="required">
+                                            <i class="fa fa-search"></i>                                        
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="tab3" style="width: 410px;padding-right: 70px;padding-left: 0px;">
+                                    <form method="POST" action="#">
+                                        <div class="input-group input-group-big">
+
+                                            <input class="input--style-1" type="text" name="address" placeholder="Enter your country here" required="required">
+                                            <i class="fa fa-search"></i>                                       
+                                         </div>
+                                    </form>
+
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="banner" >
+                    <img src="/assets/template/banner.svg" alt="" style=" margin-left: -94px;">
+                </div>
             </div>
         </div>
+    </div>
 </div>
 <!--- Choose right program-->
-<div class="container" style="padding-top: 320px;">
+<div class="container" style="padding-top:88px;">
     <div class="row">
         <div class="text-left col-md-6">
             <img src="/assets/template/section-1.svg" class="mr-2" alt="Right program">
@@ -73,7 +75,9 @@
             <h2 class="mr-2 font-weight-bold">Choose a right program to build your career</h2>
             <p class="content">Know about the program you have chosen is it a right fit for you, would you have better odds to succeed or flourish
                 in that program.</p>
-            <button class="btn btn-outline-success" type="submit">Get Started</button>
+                <div class="btncenter">
+                    <button class="btn btn-outline-success" type="submit">Get Started</button>
+                    </div>
         </div>
     </div>
 </div>
@@ -90,7 +94,9 @@
             <p class="content">Choose better education over more popularity & other cliched reasons, Compare from curated options and make better
                 decisions.
             </p>
+            <div class="btncenter">
             <button class="btn btn-outline-success" type="submit">Get Started</button>
+            </div>
         </div>
         <div class="col-md-1">
         </div>
@@ -115,12 +121,14 @@
         <div class="col-md">
             <h2 class="mr-2 font-weight-bold">Get complete support on how to apply</h2>
             <p class="content">Learn about the application process,following up with the universities and draft incredible supporting documents.</p>
+            <div class="btncenter">
             <button class="btn btn-outline-success" type="submit">Get Started</button>
+            </div>
         </div>
     </div>
 </div>
 <!--why choose schoolingcouncil-->
-<div class="bg-img-2" style="height: 1000px; padding-top: 100px;">
+<div class="page-wrapper bg-img-2 p-t-200 p1-b1-120" style="padding-bottom: -1px;">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -131,21 +139,21 @@
                     <p>Empowering thousands of students in making the right career and college decision.</p>
                 </div>
             </div>
-            <div class="col-md-4" style="padding-top: 54px;">
+            <div class="col-md-4" style="padding-top: 54px;padding-left: 0px;padding-right: 0px;">
                 <div class="section3">
                     <img src="/assets/template/profile-building.svg" alt="" style="height: 60px;">
                     <b>Profile</b> building
-                    <hr>
+                    <hr style="margin-right: 0px;margin-left: 15px;">
                 </div>
                 <div class="section4">
                     <img src="/assets/template/quality-training.svg" alt="" style="height: 60px;">
                     <b>Quality</b> training
-                    <hr>
+                    <hr style="margin-right: 0px;margin-left: 15px;">
                 </div>
                 <div class="section4">
                     <img src="/assets/template/loan-assistance.svg" alt="" style="height: 60px;">
                     <b>Loan</b> assistance
-                    <hr>
+                    <hr style="margin-right: 0px;margin-left: 15px;"> 
                 </div>
                 <div class="section4">
                     <img src="/assets/template/mentor-assistance.svg" alt="" style="height: 60px;">
@@ -156,11 +164,12 @@
     </div>
 </div>
 <!--Video-->
-<div class="container"><div class="embed-responsive embed-responsive-4by3" style="padding-left: 0px;margin-left: 1px;padding-right: 100px;margin-top: -150px;">
-    <video style="width: 1200px;height: 500px;" controls>
-      <source src="movie.mp4" type="video/mp4">
-    </video>
-  </div>
+<div class="container" style="padding-top: 45px;padding-bottom: 45px;">
+    <div class="embed-responsive embed-responsive-4by3" style="padding-left: 0px;margin-left: 1px;padding-right: 100px;">
+        <video style="width: 1200px;" controls>
+            <source src="movie.mp4" type="video/mp4">
+        </video>
+    </div>
 </div>
 <!--counter-->
 <div class="counterelement">
@@ -168,34 +177,30 @@
         <div class="row">
             <br/>
             <div class="col text-center">
-                <h1 style="font-size:32px;font-weight:700;text-align:center;padding-top:75px;">We have information about</h1>
+                <h1 class="counterheading">We have information about</h1>
             </div>
         </div>
         <div class="row text-center">
             <div class="col">
                 <div class="counter">
-                    <i class="fa fa-code fa-2x"></i>
                     <h2 class="timer count-title count-number colr" data-to="4000" data-speed="5000"></h2>
                     <p class="count-text ">Universities</p>
                 </div>
             </div>
             <div class="col">
                 <div class="counter">
-                    <i class="fa fa-coffee fa-2x"></i>
                     <h2 class="timer count-title count-number colr" data-to="1700" data-speed="5000"></h2>
                     <p class="count-text ">Countries</p>
                 </div>
             </div>
             <div class="col">
                 <div class="counter">
-                    <i class="fa fa-lightbulb-o fa-2x"></i>
                     <h2 class="timer count-title count-number colr" data-to="11900" data-speed="5000"></h2>
                     <p class="count-text ">Programs</p>
                 </div>
             </div>
             <div class="col">
                 <div class="counter">
-                    <i class="fa fa-bug fa-2x"></i>
                     <h2 class="timer count-title count-number colr" data-to="157" data-speed="5000"></h2>
                     <p class="count-text ">Students</p>
                 </div>
@@ -213,10 +218,12 @@
 <div class="container" style="padding-left: 50px;padding-right: 50px;">
     <div class="row">
         <div class="col-md-6">
-            <h1 style="font-weight: 800;font-size: 34px;padding-left:0px;padding-right:0px;">Featured Articles</h1>
+            <h1 class="heading2">Featured Articles</h1>
         </div>
         <div class="col-md-6">
-            <button class="btn btn-outline-success" type="submit" style="float: right;margin-right:50px;border-color:#9e9b90;color: black;width:150px;">View all</button>
+            <div class="btn-outline-success-viewall">
+            <button class="btn btn-outline-success" type="submit" style="border-color:#9e9b90;">View all</button>
+        </div>
         </div>
     </div>
     <br>
@@ -239,7 +246,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
+                                    
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -256,12 +264,13 @@
                                             <small class="text-muted">
                                                 <img src="/assets/template/chat.svg" alt="comments" style="width:19px;"> 22 comments | 540 views</small>
                                         </div>
+                                        
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -283,7 +292,7 @@
                             </div>
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -312,7 +321,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -334,7 +343,7 @@
                             </div>
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -356,7 +365,7 @@
                             </div>
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -386,7 +395,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -408,7 +417,7 @@
                             </div>
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -430,7 +439,7 @@
                             </div>
                             <div class="col-md-4">
                                 <a href="#">
-                                    <div class="card">
+                                    <div class="card1">
                                         <!--Card image-->
                                         <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
 
@@ -496,4 +505,4 @@
     <br>
     <app-footer></app-footer>
 </div>-->
-<app-footer></app-footer>
+<app-footer></app-footer> 
