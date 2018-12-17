@@ -1,0 +1,32 @@
+#bgfooterpage{
+    background-color: #774fe5;
+}
+ul li {
+    list-style-type: none;
+}
+.heading{
+    color: #ffffff;
+    font-size: 22px;
+    text-align: left;
+    font-weight:601;
+}
+.footertxt {
+    color: whitesmoke;
+    font-size: 16px;
+    text-decoration: none; 
+    padding-top: 10px;padding-bottom: 10px;
+}
+.textspace{
+    padding-top: 5px;padding-bottom: 5px;
+}
+.colsectn2{
+    padding-top:15px;
+}
+.imgC1 {  width: 17px;} 
+
+.finalfooterbg{
+ background-color: #39157e;
+}
+.termscndtn{
+    text-decoration: none;color:lightgray;font-size:12px;
+}
