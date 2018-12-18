@@ -7,6 +7,7 @@ import { FooterpageComponent } from './footerpage/footerpage.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path:'filterpage', component: FilterpageComponent},
   { path:'footerpage', component: FooterpageComponent}
 

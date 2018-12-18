@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 declare var $:any;
 declare var jQuery: any;
 
@@ -9,7 +10,7 @@ declare var jQuery: any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router:Router) { }
 
   ngOnInit() {
     $(document).ready(function ($) {
@@ -112,5 +113,7 @@ export class HomeComponent implements OnInit {
     });   
   }
 
- 
+ onMovetoProgram(){
+   this._router.navigate(['/filterpage']);
+ }
 }

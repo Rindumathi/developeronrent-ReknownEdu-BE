@@ -1,6 +1,6 @@
 <div id="app" class="container n1">
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" [routerLink]="['/home']">
             <img src="/assets/template/logo.svg" width="230" alt="logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
@@ -16,7 +16,7 @@
                     <a class="nav-link" href="#">Discover</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Programs</a>
+                    <a class="nav-link" [routerLink]="['/filterpage']">Programs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">University</a>

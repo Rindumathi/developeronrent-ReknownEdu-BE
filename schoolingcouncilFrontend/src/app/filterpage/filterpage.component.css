@@ -183,3 +183,149 @@ a.dropdownfa:after{
 .pagelinktxt:hover{
     color:black;
     }
+  .leftfilternav{
+    background-color:#f6f6f6;
+    border-radius:7px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top: 20px;padding-bottom: 20px;
+  }
+  .filternavhead{
+    font-size:23px;
+    font-weight:600;
+  }
+.filternavtxt{
+    padding-top: 25px;padding-bottom: 5px;
+    font-size: 17px;
+    color:#6c6c6c;
+}
+.btnfilter
+{
+    border-radius: 7px;
+    border:1px solid white;
+ background-color:white;
+ padding-right: 11px;padding-left: 30px;padding-top: 2px;padding-bottom: 2px;
+}
+.dropdwnscrol{
+    height:100px;
+    overflow-y: scroll;
+}
+#dLabel {
+    width: 280px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: solid 1px #fff;
+  text-align: left;
+  padding: 7.5px 15px;
+  color: #ccc;
+  letter-spacing: 0.7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+#dLabel1 {
+    width: 153px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: solid 1px #fff;
+  text-align: left;
+  padding: 7.5px 15px;
+  color: #ccc;
+  letter-spacing: 0.7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.filtersmall{
+    display: inline-block;
+}
+button.dropdownfa1:after{
+    font-family: FontAwesome;
+    display: inline-block;
+   padding-left:0px;
+    padding-right: 6px;
+    vertical-align: middle;
+    color:black;
+    font-size: 20px;
+ }
+ p{
+    margin-bottom:0px;
+ }
+ button.dropdownfa2:after {
+    content: "\f107";
+    float: right;
+ }
+ button.dropdownfa2:after{
+    font-family: FontAwesome;
+    display: inline-block;
+   padding-left:0px;
+    padding-right: 6px;
+    vertical-align: middle;
+    color:black;
+    font-size: 20px;
+ }
+ 
+ button.dropdownfa1:after {
+    content: "\f107";
+    float: right;
+ }
+ button.dropdownfa3:after {
+    content: "\f107";
+    float: right;
+ }
+ button.dropdownfa3:after{
+    font-family: FontAwesome;
+    display: inline-block;
+   padding-left:0px;
+    padding-right: 6px;
+    vertical-align: middle;
+    color:black;
+    font-size: 20px;
+ }
+ button.dropdownfa4:after {
+    content: "\f107";
+    float: right;
+ }
+ button.dropdownfa4:after{
+    font-family: FontAwesome;
+    display: inline-block;
+   padding-left:0px;
+    padding-right: 6px;
+    vertical-align: middle;
+    color:black;
+    font-size: 20px;
+ }
+ .dropdown-menu-filter {
+    width: 240px;
+    padding: 0;
+    margin: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .dropdown-menu-filter1 {
+    width: 0px;
+    padding: 0;
+    margin: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  /* select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+} 
+.select-wrapper {
+    position: relative;	 
+}
+
+.select-wrapper:after {
+	font-family: FontAwesome;
+  	content: '\f107';
+  	font-size: 28px;
+  	position: absolute;
+  	top: 0px;
+  	right: 20px;
+  	color: #434B67;
+  	pointer-events: none;
+} */
