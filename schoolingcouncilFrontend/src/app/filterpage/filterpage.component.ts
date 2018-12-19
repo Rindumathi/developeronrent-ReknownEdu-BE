@@ -29,6 +29,12 @@ export class FilterpageComponent implements OnInit {
 $('.dropdown-menu div').on('click', function(){    
   $('.dropdownfa3').html($(this).html());    
 });
+//filter 4
+$('.dropdown-menu option').on('click', function(){    
+  $('.dropdownfa4').html($(this).html());    
+});
+
+
   }
 
 }

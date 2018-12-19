@@ -37,6 +37,8 @@ a.dropdownfa:after{
  .textclr{
  color:black;
  }
+ /* select option { padding: 6px;} */
+
  .textclr:hover{
  color:black;
  background-color:transparent;
@@ -99,10 +101,13 @@ a.dropdownfa:after{
 }
 .panl{
     padding-left:15px;
-    padding-right:80px;
+    padding-right:52px;
+    padding-top: 15px;
 }
 .panl1{
     padding-left:15px;
+    padding-top: 24px;
+    padding-bottom: 20px;
 }
 .bgunidel{
     background-color:white;
@@ -224,7 +229,7 @@ a.dropdownfa:after{
   font-weight: 600;
 }
 #dLabel1 {
-    width: 153px;
+    width: 125px;
   height: 40px;
   border-radius: 8px;
   background-color: #fff;
@@ -232,7 +237,7 @@ a.dropdownfa:after{
   text-align: left;
   padding: 7.5px 15px;
   color: #ccc;
-  letter-spacing: 0.7px;
+  letter-spacing: -0.3px;
   font-size: 14px;
   font-weight: 600;
 }
@@ -277,7 +282,7 @@ button.dropdownfa1:after{
     font-family: FontAwesome;
     display: inline-block;
    padding-left:0px;
-    padding-right: 6px;
+    padding-right: 0px;
     vertical-align: middle;
     color:black;
     font-size: 20px;
@@ -290,7 +295,7 @@ button.dropdownfa1:after{
     font-family: FontAwesome;
     display: inline-block;
    padding-left:0px;
-    padding-right: 6px;
+    padding-right: 0px;
     vertical-align: middle;
     color:black;
     font-size: 20px;
@@ -309,12 +314,202 @@ button.dropdownfa1:after{
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  /* select {
+   
+.container1{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.container2{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.container3{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.checkbxbg{
+    background-color: white;
+    border-radius:7px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-top: 20px;padding-bottom: 20px;
+    width: 280px;
+}
+
+/* The customcheck */
+.customcheck {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-weight: 600;
+    padding-bottom:4px;
+}
+
+/* Hide the browser's default checkbox */
+.customcheck input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border-radius: 5px;
+    border:1px solid #774fe5;
+}
+
+/* On mouse-over, add a grey background color */
+.customcheck:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.customcheck input:checked ~ .checkmark {
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.customcheck input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.customcheck .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid #02cf32;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* scrollbar */
+/* Customize website's scrollbar like Mac OS
+Not supports in Firefox and IE */
+/* total width */
+.scrollbar::-webkit-scrollbar {
+    background-color:#fff;
+    width:10px
+}
+
+/* background of the scrollbar except button or resizer */
+.scrollbar::-webkit-scrollbar-track {
+    background-color:#f4f4f4;
+    border:3px solid white;
+}
+.scrollbar::-webkit-scrollbar-track:hover {
+    background-color:#f4f4f4;
+}
+
+/* scrollbar itself */
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color:#c1c0c0;
+    border-radius:1px;
+    border:5px solid #c1c0c0;
+    height:40px;
+}
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color:#c1c0c0;
+    border:5px solid #c1c0c0;
+}
+
+/* set button(top and bottom of the scrollbar) */
+.scrollbar::-webkit-scrollbar-button {display:none}
+
+/* div box 
+body{background-color:#babac0}*/
+.scrollbar {
+    height: 25vh;
+    width: 14vw;
+    min-width: 240px;
+    background: #fff;
+    overflow-y: scroll;
+  overflow-x: hidden;
+}
+.overflow{min-height: 100vh}
+@media (min-width: 1800px) and (max-width: 1920px) {
+    .checkbxbg>.scrollbar {
+        height: 25vh;
+        width: 12vw;
+        min-width: 240px;
+        background: #fff;
+        overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .col-md-4>.leftfilternav{ 
+    padding-left: 125px;
+    padding-right: 150px;
+    }
+}
+@media (min-width: 1360px) and (max-width: 1440px) {
+    .checkbxbg>.scrollbar {
+        height: 25vh;
+        width: 12vw;
+        min-width: 240px;
+        background: #fff;
+        overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .row>.col-md-4>.leftfilternav{ 
+    padding-left: 50px;
+    padding-right: 50px;
+    }
+}
+@media (min-width: 1500px) and (max-width: 1600px){
+    .checkbxbg>.scrollbar {
+        height: 25vh;
+        width: 12vw;
+        min-width: 240px;
+        background: #fff;
+        overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .col-md-4>.leftfilternav{ 
+    padding-left: 70px;
+    padding-right: 50px;
+    }
+}
+
+button{
+    outline: none;
+}
+/* select{
+    outline: none;
+}
+
+select {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
 } 
+/* .select-wrapper select option { padding: 6px;} */
+
+/* 
 .select-wrapper {
     position: relative;	 
 }
@@ -322,10 +517,10 @@ button.dropdownfa1:after{
 .select-wrapper:after {
 	font-family: FontAwesome;
   	content: '\f107';
-  	font-size: 28px;
+  	font-size: 25px;
   	position: absolute;
   	top: 0px;
-  	right: 20px;
+  	right: 0px;
   	color: #434B67;
   	pointer-events: none;
-} */
+}  */ 
