@@ -3,15 +3,16 @@
 }
 .navbar-light .navbar-nav .nav-link
  {
- color:#f3f2edec;
+ color: white;
  font-size: 20px;
  } 
  .navbar-nav{
-     padding-left: 70px;
+     padding-left: 50px;
  }
+ 
  @media (min-width: 1366px){
   .navbar-nav {
-    padding-left: 100px;
+    padding-left: 60px;
    }
 }
 @media (min-width: 1440px){
