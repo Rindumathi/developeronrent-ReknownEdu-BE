@@ -1,4 +1,7 @@
-
+@font-face {
+  font-family:"Product Sans";
+  src: url("/assets/template/product-sans/ProductSans-Regular.ttf") format("truetype");
+}
 .bg-img-1 {
   background: url("/assets/template/background.svg") center center/cover no-repeat;
   width:100%;
@@ -26,6 +29,9 @@ h3{
   padding-left: 0px;
   font-size:35px; 
   color:#fff;
+  font-family:"Product Sans";
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 /* @media (max-width: 767px) {
   .p-t-200 {
@@ -60,14 +66,14 @@ h3{
 }
 @media (min-width: 1360px) and (max-width: 1440px) {
   .bg-img-2{
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 108px;
+    padding-bottom: 108px;
  }
 }
 @media (min-width: 1500px) and (max-width: 1600px) {
   .bg-img-2{
     padding-top: 143px;
-    padding-bottom: 132px;
+    padding-bottom: 143px;
  }
  .bg-img-1{
   height: 750px;
@@ -98,6 +104,7 @@ h3{
 
 .sec{
   padding-top:70px;
+  
 }
 .sec1{
   padding-top: 28px;
@@ -111,17 +118,22 @@ h3{
 .banner>img{
   height: 568px;
 }
-
+#blogCarousel>.carousel-indicators>li{
+  border-radius: 9px;
+}
 .btn-success{
   position: absolute;
    margin-left: 337px;
+   color:gainsboro;
     width: 115px;
-    height: 57px;
+    height: 55px;
     font-size: 22px;
     background-color: #52b14a;
     border-color: #52b14a;
     border-bottom-right-radius:inherit;
     border-top-right-radius:inherit;
+    border-bottom-left-radius:initial;
+    border-top-left-radius: initial;
 }
 .fa {
   padding-bottom: 30px;
@@ -131,6 +143,7 @@ h3{
 .card-body{
   padding-left: 0px;
   padding-right: 0px;
+  text-align:center;
 }
 input,
   textarea {
@@ -162,7 +175,7 @@ input,
     background: #ffffff;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -382,9 +395,11 @@ input,
   background: url('/assets/template/background.svg') no-repeat;
   height:1000px ;
 }
-.font-weight-bold
+.font-weight-bold1
 {
  font-size: 34px;
+ font-weight: 900;
+ font-family:"Product sans";
 }
 .content{
   font-size:23px;
@@ -495,7 +510,7 @@ h3{
     }  
 } */
 .searchform{
-  width:410px;
+  width:450px;
 }
 .section1container
 {
@@ -533,6 +548,10 @@ h3{
   }
 }
 @media(min-width:350px) and (max-width:450px){
+  .col-md>.font-weight-bold1{
+    font-size:16px;
+    text-align:center;
+  }
   .croslalign>.blg{
     padding-bottom: 0px;
   }
@@ -605,6 +624,7 @@ h3{
     padding-left:0px;
     font-weight:700;
     text-align:center;
+    font-family: "Product sans";
     }
     .col-md-6>.content1{
       font-size: 12px;
@@ -631,8 +651,9 @@ h3{
   {
     padding-top: 20px;
   }
-  .row>.text-left{
+  .row>.text-center{
     padding-top: 0px;
+    text-align: center;
   }
   .container>.section1container{
     padding-top:0px;
@@ -695,10 +716,12 @@ border-radius: .25rem;
     font-size: 16px;
     text-align: center;
     padding-top: 0px;padding-bottom: 0px;
+    font-family:'Product sans';
   }
   .col-md-6>.heading2{
-    font-size:15px;
+    font-size:14px;
     text-align:left;
+    font-family:"Product Sans";
   }
   .page-wrapper {
     min-height: 50vh;
@@ -709,9 +732,10 @@ border-radius: .25rem;
     /* position: fixed; */
   }
   #titlenav>h3{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     text-align: center;
+    font-family:"Product sans";
   }
   .wrapper>h3{
     display: none;
@@ -738,7 +762,7 @@ border-radius: .25rem;
   }
   .content{
     text-align: center;
-    font-size:14px;
+    font-size:13px;
 
   }
   .input-group>.btn{
@@ -758,22 +782,26 @@ border-radius: .25rem;
   .btncenter>.btn{
    font-size: 12px;
   }
-  .text-left >img{
+  .btncenter>.btn-outline-success{
+    width: 86px;
+   }
+  .text-center >img{
     width:70%;
-   margin-left: 50px;
+   margin-left: 0px;
   }
   .col-md-6>.btn-outline-success-viewall{
     text-align: right;
     margin-right:0px;
   }
-  .btn-outline-success-viewall>.btn{
+  .col-md-6>.btn-outline-success-viewall>.btn{
     border-color:#9e9b90;
     padding-left: 6px;
     padding-right: 6px;
     margin-top: -59px;
-    padding-top: 5px;
-    width:80px;
-    padding-bottom: 5px;
+    padding-top: 3px;
+    width:68px;
+    height:auto;
+    padding-bottom: 3px;
     font-size: 12px;
   }
   
@@ -784,7 +812,6 @@ border-radius: .25rem;
   .fa {
     padding-bottom: 20px;
     font-size: 25px;
-    
   }
   .card-body>.card-text{
     font-size:12px;
@@ -794,16 +821,26 @@ border-radius: .25rem;
 .btn-outline-success{
   font-size: 20px;
   color: black;
-  border-color:#d6d2c33a;
+  border-color:#28a745;
    width: 125px;
   
   }
+  .btn-outline-success-viewall>.btn-outline-success{
+   font-weight: 500;
+    font-size: 20px;
+    color: black;
+    border-color:#d8d2d240;
+     width: 134px;
+     height: 42px;
+    }
 /* Featured Articles*/
  .heading2{
-  font-weight: 800;
+  font-weight: 900;
   font-size: 34px;
   padding-left:0px;
   padding-right:0px;
+  font-family:"Product Sans";
+  letter-spacing: 1px;
  }
 
 
@@ -835,8 +872,8 @@ a:visited {
 }
 .card1{
  width: 300px;
-  box-shadow: 5px 8px 8px 0 #ccc;
-  text-align: center;
+  box-shadow: 2px 8px 8px 0 #ccc;
+  color:black;
   position: relative;
 display: flex;
 flex-direction: column;
@@ -859,7 +896,7 @@ padding-left:3px;
 
 .btn-outline-success-viewall{
   text-align: right;
-  margin-right: 50px;
+  margin-right: 20px;
   color: black;
 }
 
@@ -898,10 +935,11 @@ background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
 
 .counterheading{
   font-size:32px;
-  font-weight:700;
+  font-weight:900;
   text-align:center;
   padding-top: 50px;
   padding-bottom: 40px;
+  font-family:"Product Sans";
 }
 .coun{
 padding: 20px 0;
@@ -939,15 +977,17 @@ padding-left: 50px;
 font-weight: 400;
 }
 .heading1{
+  font-family:"Product Sans";
 padding-top: 100px;
-font-size: 44px;
+font-size: 32px;
 padding-left: 100px;
-font-weight:600;
+font-weight:900;
+letter-spacing: 1px;
 }
 .section3{
 padding-top: 100px;
 text-align: center;
-font-size: 27px;
+font-size: 22px;
 display: flex;
 display: inline-block;
 padding-left: 36px;
@@ -956,7 +996,7 @@ padding-top: 45px;
 .section4{
 padding-top: 10px;
 text-align: center;
- font-size: 27px;
+ font-size: 22px;
  display: flex;
  display: inline-block;
  padding-left: 34px;

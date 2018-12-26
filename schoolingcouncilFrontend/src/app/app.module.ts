@@ -8,7 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { FilterpageComponent } from './filterpage/filterpage.component';
 import { FooterpageComponent } from './footerpage/footerpage.component';
 import { SignupComponent } from './signup/signup.component';
-
+import { CountrypageComponent } from './countrypage/countrypage.component';
+import {NgxPageScrollModule} from 'ngx-page-scroll';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,11 +18,13 @@ import { SignupComponent } from './signup/signup.component';
     FooterComponent,
     FilterpageComponent,
     FooterpageComponent,
-    SignupComponent
+    SignupComponent,
+    CountrypageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxPageScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

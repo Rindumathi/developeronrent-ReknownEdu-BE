@@ -22,25 +22,25 @@
     <p class="signuptxt">This will create your account and enable you to receive recommendations (you can opt-out anytime)</p>
     <form>
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-5" style="padding-top: 30px;">
           <div class="form-group">
-            <label for="usr" style="color:#774fe5">First Name</label>
-            <input type="text" class="form-control" id="usr" name="username">
+            <input type="text" id="f_name" class="form-control" required>
+            <label class="form-control-placeholder" for="f_name" >First Name</label>
           </div>
         </div>
         <div class="col-md-1"></div>
-        <div class="col-md-6" style="padding-left: 40px;">
-          <div class="form-group" style="padding-top: 7px;">
-            <label for="usr"></label>
-            <input type="text" class="form-control" id="usr" name="lastname" placeholder="Last Name">
+        <div class="col-md-6" style="padding-left: 40px;padding-top: 30px;">
+          <div class="form-group">
+            <input type="text" id="l_name" class="form-control" required>
+            <label class="form-control-placeholder" for="l_name">Last Name</label>
           </div>
         </div>
       </div>
       <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-5" style="padding-top: 27px;">
             <div class="form-group">
-              <label for="usr"></label>
-              <input type="text" class="form-control" id="usr" name="username" placeholder="Email Id">
+              <input type="email" id="email_id" class="form-control" required>
+              <label class="form-control-placeholder" for="email_id">Email Id</label>
             </div>
           </div>
           <div class="col-md-1"></div>
@@ -104,11 +104,11 @@
                         </div>   
                   </div>
               </div>
-              <div class="col-md-7">
-                  <div class="form-group">
-                      <label for="mobilenumber"></label>
-                      <input type="" class="form-control" id="mobilenumber" aria-describedby="mobileHelp" placeholder="Mobile Number">
-                    </div>
+              <div class="col-md-7" style="padding-top: 23px;">
+                <div class="form-group">
+                  <input type="text" id="mobile_num" class="form-control" required>
+                  <label class="form-control-placeholder" for="mobile_num">Mobile Number</label>
+                </div>
                 </div>
                 <p class="text-muted" style="padding-left: 14px;">OTP will be sent to this number.</p>
              </div>

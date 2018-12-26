@@ -3,7 +3,7 @@
 }
 .navbar-light .navbar-nav .nav-link
  {
- color: white;
+ color: gainsboro;
  font-size: 20px;
  } 
  .navbar-nav{
@@ -64,6 +64,7 @@
   color:transparent;
   border-color:transparent;
 }
+
 #app{
   line-height:2.6;
   font-size:19px;
@@ -88,7 +89,7 @@
 @media(min-width:350px) and (max-width:450px){
   .container .navbar-light .navbar-nav .nav-link
  {
- color:#f3f2edec;
+ color:gainsboro;
  font-size: 15px;
  } 
   .nav-item>.btn{
@@ -99,4 +100,9 @@
     height:37px;
     padding-left: 9px;padding-right: 9px;
   }
+  
+  button:focus{
+    /* border:1px solid green !important; */
+    outline: none !important;
+   }
 }

@@ -173,6 +173,28 @@ select {
 .nowrap {
     white-space: nowrap ;
 }
+/* Input label */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control-placeholder {
+    position: absolute;
+    top: 0;
+    padding: 7px 0 0 13px;
+    transition: all 200ms;
+    opacity: 0.5;
+  }
+  
+  .form-control:focus + .form-control-placeholder,
+  .form-control:valid + .form-control-placeholder {
+    font-size: 100%;
+    transform: translate3d(0, -100%, 0);
+    opacity: 1;
+    color: #774fe5;
+  }
+  
 /* Body of Css */
 .signuphead{
     font-size: 24px;
@@ -187,6 +209,11 @@ select {
     margin-bottom:0px;
     padding-bottom: 15px;
     }
+    input[type="text"],input[type="email"] {
+        outline: none;
+        box-shadow:none !important;
+        border:1px solid #ccc !important;
+        }
 /* Checkbox */
 .checkbxbg{
     background-color: white;
@@ -312,4 +339,9 @@ select {
   .form-control{
       border: solid 1px #ccc;
       border-radius: 4px;
+  }
+  input[type="text"]{
+      outline: none !important;
+      box-shadow: none !important;
+      border:  1px solid #ccc;
   }
